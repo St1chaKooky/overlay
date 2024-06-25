@@ -6,7 +6,10 @@ class MyOverlayApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('Hi'),),
+      body: Container(
+        child: Text('sasa'),
+        color: Colors.amber,
+      )
     );
   }
 }

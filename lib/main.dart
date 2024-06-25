@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:overlay/main_screen.dart';
+import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+import 'package:overlay/ui/home_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  if(!await FlutterOverlayWindow.isPermissionGranted()){
+      await FlutterOverlayWindow.requestPermission();
+    }
+  
+  runApp(const HomeScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+@pragma("vm:entry-point")
+void overlayMain() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+     MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Material(
+        child: Container(
+          child: Text('sasa'),
+        color: Colors.amber,
       ),
-      home: const MyOverlayApp(),
-    );
-  }
+      ),
+    ),
+  );
 }
+
 
